@@ -1,0 +1,5 @@
+{
+  "name": "유투브 대본 리뉴얼 기획 분석",
+  "description": "YouTube viral script analyzer and generator. Paste a popular script, analyze its winning formula, and generate new viral content ideas and scripts instantly.\n웹사이트 언어는 한국어로 통일하고, 사용자가 대본을 복붙하면, 너는 그 대본의 구조와 내용을 분석해.\n그리고 새로운 주제를 제공하고, 사용자가 주제를 선택하면, 해당 주제로 분석한 대본의 구조대로 작성해",
+  "requestFramePermissions": []
+}
