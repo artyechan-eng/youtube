@@ -66,13 +66,17 @@ export const analyzeTranscript = async (transcript: string): Promise<ViralAnalys
 
 export const generateIdeas = async (analysis: ViralAnalysis, originalTranscript: string): Promise<VideoIdea[]> => {
   const prompt = `
-  우리가 방금 분석한 인기 영상의 성공 공식(Analysis)을 바탕으로, 
-  완전히 새로운 주제의 유튜브 영상 아이디어 4가지를 제안해 주세요.
+  우리가 방금 분석한 인기 영상의 성공 공식(Analysis)을 바탕으로, 총 4가지의 유튜브 영상 아이디어를 제안해 주세요.
   
   분석된 성공 공식:
   ${JSON.stringify(analysis)}
 
-  원래 대본의 주제와는 다르지만, 동일한 '구조적 재미'와 '몰입감'을 줄 수 있는 아이디어여야 합니다.
+  원래 대본 일부:
+  ${originalTranscript.substring(0, 1000)}
+
+  **중요**: 아이디어 구성은 다음과 같이 해주세요:
+  - 첫 2개: 원래 대본과 **비슷한 주제/분야**에서 성공 공식을 적용한 아이디어
+  - 나머지 2개: 원래 대본과는 **완전히 다른 새로운 주제**에서 동일한 구조적 재미와 몰입감을 줄 수 있는 아이디어
   
   각 아이디어는 다음 필드를 가집니다:
   1. title: 클릭을 유도하는 자극적이고 매력적인 썸네일용 제목.

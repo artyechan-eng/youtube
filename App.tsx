@@ -13,6 +13,7 @@ const App: React.FC = () => {
   const [sourceText, setSourceText] = useState('');
   const [analysis, setAnalysis] = useState<ViralAnalysis | null>(null);
   const [ideas, setIdeas] = useState<VideoIdea[]>([]);
+  const [selectedIdea, setSelectedIdea] = useState<VideoIdea | null>(null);
   const [finalScript, setFinalScript] = useState<GeneratedScript | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -49,6 +50,7 @@ const App: React.FC = () => {
 
   const handleSelectIdea = async (idea: VideoIdea) => {
     if (!analysis) return;
+    setSelectedIdea(idea);
     try {
       setLoading(true);
       setStep(AppStep.GENERATING_SCRIPT);
@@ -64,12 +66,28 @@ const App: React.FC = () => {
     }
   };
 
+  const handleSelectIdeaFromScript = async (idea: VideoIdea) => {
+    if (!analysis || loading) return;
+    setSelectedIdea(idea);
+    try {
+      setLoading(true);
+      const result = await generateScript(idea, analysis);
+      setFinalScript(result);
+    } catch (error) {
+      console.error(error);
+      alert('대본 작성 중 오류가 발생했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleReset = () => {
     if (window.confirm("처음으로 돌아가시겠습니까? 현재 작업 내용은 사라집니다.")) {
       setStep(AppStep.INPUT);
       setSourceText('');
       setAnalysis(null);
       setIdeas([]);
+      setSelectedIdea(null);
       setFinalScript(null);
     }
   };
@@ -145,10 +163,14 @@ const App: React.FC = () => {
              </div>
         )}
 
-        {step === AppStep.SCRIPT_VIEW && finalScript && (
+        {step === AppStep.SCRIPT_VIEW && finalScript && selectedIdea && (
           <ScriptView 
             script={finalScript} 
-            onReset={handleReset} 
+            onReset={handleReset}
+            ideas={ideas}
+            selectedIdea={selectedIdea}
+            onSelectIdea={handleSelectIdeaFromScript}
+            isGenerating={loading}
           />
         )}
 
