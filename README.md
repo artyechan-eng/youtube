@@ -5,9 +5,10 @@
 ## ✨ 주요 기능
 
 - 📊 **영상 분석**: 인기 영상의 대본을 분석하여 성공 요인 추출
-- 💡 **아이디어 생성**: 분석된 성공 공식을 바탕으로 새로운 콘텐츠 아이디어 제안
+- 💡 **아이디어 생성**: 비슷한 주제 2개 + 새로운 주제 2개의 콘텐츠 아이디어 제안
 - 📝 **대본 작성**: 선택한 아이디어로 실제 촬영용 대본 자동 생성
-- 🔐 **API 키 관리**: 로컬 스토리지를 활용한 안전한 API 키 저장
+- 🔐 **API 키 관리**: 로컬 스토리지 활용 - 한 번 입력하면 자동 저장
+- 💰 **무료 사용**: Google Gemini 1.5 Flash 무료 모델 사용
 
 ## 🚀 로컬 실행
 
@@ -61,7 +62,7 @@ git push -u origin main
 - **Frontend**: React 19 + TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
-- **AI**: Google Gemini 2.5 Flash
+- **AI**: Google Gemini 1.5 Flash (무료)
 - **Deployment**: Vercel
 
 ## 📄 라이선스
@@ -70,4 +71,4 @@ MIT License
 
 ---
 
-Powered by Google Gemini 2.5 Flash
+Powered by Google Gemini 1.5 Flash
